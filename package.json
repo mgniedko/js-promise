@@ -1,0 +1,22 @@
+{
+  "name": "js-promise",
+  "version": "1.0.0",
+  "description": "My JS Promise implementation",
+  "main": "JsPromise.js",
+  "scripts": {
+    "test": "jest --watchAll --noStackTrace",
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgniedko/js-promise.git"
+  },
+  "author": "mgniedko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgniedko/js-promise/issues"
+  },
+  "homepage": "https://github.com/mgniedko/js-promise#readme"
+}
