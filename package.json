@@ -4,7 +4,7 @@
   "description": "My JS Promise implementation",
   "main": "JsPromise.js",
   "scripts": {
-    "test": "jest --watchAll --noStackTrace",
+    "test": "jest --watchAll --noStackTrace"
   },
   "devDependencies": {
     "jest": "^27.5.1"

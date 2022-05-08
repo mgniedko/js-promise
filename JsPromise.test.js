@@ -5,15 +5,15 @@ const DEFAULT_VALUE = "default"
 
 describe("then", () => {
     it("with no chaining", () => {
-        return promise().then(v => expect(v).toEqual(DEFAULT_VALUE))
+        return promise().then(v => expect(v).toEqual(DEFAULT_VALUE));
     })
 
     it("with multiple thens for same promise", () => {
-        const checkFunc = v => expect(v).toEqual(DEFAULT_VALUE)
-        const mainPromise = promise()
-        const promise1 = mainPromise.then(checkFunc)
-        const promise2 = mainPromise.then(checkFunc)
-        return Promise.allSettled([promise1, promise2])
+        const checkFunc = v => expect(v).toEqual(DEFAULT_VALUE);
+        const mainPromise = promise();
+        const promise1 = mainPromise.then(checkFunc);
+        const promise2 = mainPromise.then(checkFunc);
+        return Promise.allSettled([promise1, promise2]);
     })
 
     it("with then and catch", () => {
