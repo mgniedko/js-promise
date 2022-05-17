@@ -9,6 +9,8 @@ class MyPromise {
     #catchCbs = [];
     #value;
     #state = STATE.PENDING;
+    #onSuccessBind = this.#onSuccess.bind(this);
+    #onFailBind = this.#onFail.bind(this);
 
     constructor(cb) {
         try {
@@ -52,10 +54,53 @@ class MyPromise {
         this.#runCallbacks();
     }
 
-    then(cb) {
-        this.#thenCbs.push(cb);
+    then(onSuccess, onReject) {
+        return new MyPromise((resolve, reject) => {
+            if (onSuccess) {
+                this.#thenCbs.push(result => {
+                    if (!onSuccess) {
+                        resolve(result);
+                        return;
+                    }
 
-        this.#runCallbacks();
+                    try {
+                        resolve(onSuccess(result));
+                    } catch (error) {
+                        reject(error);
+                    }
+                });
+
+                this.#catchCbs.push(result => {
+                    if (!onReject) {
+                        reject(result);
+                        return;
+                    }
+
+                    try {
+                        resolve(onReject(result));
+                    } catch (error) {
+                        reject(error);
+                    }
+                });
+
+
+            }
+
+            if (onSuccess) {
+                this.#thenCbs.push(cb);
+            }
+
+            if (onReject) {
+                this.#catchCbs.push(cb);
+            }
+
+
+            this.#runCallbacks();
+        });
+    }
+
+    catch(cb) {
+        this.then(undefined, cb);
     }
 }
 
@@ -65,4 +110,4 @@ module.exports = MyPromise;
 //
 // });
 
-// new Promise(cb)
+const p = new Promise(res, err).then()
